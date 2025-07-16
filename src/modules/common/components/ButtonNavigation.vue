@@ -9,6 +9,7 @@
         <ArrowLeft/>
         <span>Anterior</span>
         </button>
+        
          <button
          :disabled="hasMoreData"
         @click="$router.push({query:{page:page+1}})"

@@ -9,10 +9,37 @@
       <span class="self-center whitespace-nowrap text-xl font-semibold">Termcode</span>
     </a>
     <div class="mt-2 sm:mt-0 sm:flex md:order-2">
-      <!-- Login Button -->
-      <button type="button" class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Login</button>
-      <button type="button" class="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Register</button>
+      <template v-if="!authStore.isAuthenticated">
+        <!-- Login Button -->
+      <RouterLink
+      to="/auth/login"
+       type="button" class=" mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none
+       focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Login
+      </RouterLink>
+
+      <RouterLink
+      to="/auth/register"
+       type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center 
+      text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 
+      focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Register</RouterLink>
+      </template>
+      <template v-if="authStore.isAuthenticated">
+        <!-- Login Button -->
+      <RouterLink
+      v-if="authStore.isAdmin"
+      to="/admin"
+       type="button" class=" mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none
+       focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Admin
+      </RouterLink>
+
+      <button
+      @click="authStore.logout()"
+       type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center 
+      text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 
+      focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Cerrar sesion</button>
+      </template>
       <!-- Register Button -->
+
       <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden" aria-controls="navbar-sticky" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
@@ -39,6 +66,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStores } from '@/modules/auth/stores/auth.stores';
+import { RouterLink } from 'vue-router';
+const authStore = useAuthStores();
+
 
 </script>
 
