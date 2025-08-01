@@ -5,7 +5,8 @@ import { createPinia } from 'pinia'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
-import './style.css'
+import "@/style.css";
+import '@/config/yup'
 
 
 import App from './App.vue'
